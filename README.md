@@ -1,5 +1,9 @@
 # Failed Login Detector
 
+[![CI](https://github.com/hasinosec/failed-login-detector/actions/workflows/ci.yml/badge.svg)](https://github.com/hasinosec/failed-login-detector/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+
 A small Python security-monitoring project that analyses authentication logs and raises an alert when one IP address has repeated failed login attempts in a short period. This can indicate a possible brute-force attack.
 
 ## Why I built this
@@ -43,6 +47,18 @@ python3 detect_failed_logins.py sample_auth.log --threshold 3 --window 5
 ```
 
 All data in `sample_auth.log` is fictional and uses documentation-only IP ranges.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+ruff check .
+pytest -q
+```
+
+The test suite covers the time-window boundary, the alert threshold, per-IP
+independence, and log parsing (including skipping malformed lines). CI runs it on
+Python 3.10, 3.11, and 3.12.
 
 ## Industry context
 
