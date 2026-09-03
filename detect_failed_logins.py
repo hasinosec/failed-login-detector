@@ -55,7 +55,9 @@ def find_brute_force_attempts(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Detect possible brute-force login attempts.")
     parser.add_argument("log_file", type=Path, help="Path to an authentication log file")
-    parser.add_argument("--threshold", type=int, default=5, help="Failed attempts needed for an alert (default: 5)")
+    parser.add_argument(
+        "--threshold", type=int, default=5, help="Failed attempts before an alert (default: 5)"
+    )
     parser.add_argument("--window", type=int, default=10, help="Time window in minutes (default: 10)")
     args = parser.parse_args()
 
